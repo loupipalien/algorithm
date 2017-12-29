@@ -30,7 +30,20 @@ public class CountOnes {
     }
 
     public static int countOnes2(int n) {
-        return 0;
+        n = round(n ,0);
+        n = round(n ,1);
+        n = round(n ,2);
+        n = round(n ,3);
+        n = round(n ,4);
+        return n;
+    }
+
+    private static int round(int n, int c) {
+        return (n & mask(c)) + ((n >> (1 << c) & mask(c)));
+    }
+
+    private static int mask(int c) {
+        return (int) ((-1L & 0xFFFFFFFF) / ((1 << (1 << c)) + 1));
     }
 
     public static void main(String[] args) {
@@ -44,16 +57,19 @@ public class CountOnes {
         System.out.println(Integer.MIN_VALUE);
         System.out.println(Integer.toBinaryString(Integer.MIN_VALUE));
         System.out.println(CountOnes.countOnes(Integer.MIN_VALUE));
+        System.out.println("countOnes2:" + CountOnes.countOnes2(Integer.MIN_VALUE));
         System.out.println(Integer.bitCount(Integer.MIN_VALUE));
         System.out.println();
         System.out.println(Integer.MIN_VALUE >> 2);
         System.out.println(Integer.toBinaryString(Integer.MIN_VALUE >> 2));
         System.out.println(CountOnes.countOnes(Integer.MIN_VALUE >> 2));
+        System.out.println("countOnes2:" + CountOnes.countOnes2(Integer.MIN_VALUE >> 2));
         System.out.println(Integer.bitCount(Integer.MIN_VALUE >> 2));
         System.out.println();
         System.out.println(Integer.MIN_VALUE >>> 2);
         System.out.println(Integer.toBinaryString(Integer.MIN_VALUE >>> 2));
         System.out.println(CountOnes.countOnes(Integer.MIN_VALUE >>> 2));
+        System.out.println("countOnes2:" + CountOnes.countOnes2(Integer.MIN_VALUE >>> 2));
         System.out.println(Integer.bitCount(Integer.MIN_VALUE >>> 2));
 
 //        System.out.println(pow(pow(0)) + 1);
